@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowvia - Empowering Innovation Through Technology</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        accent: {
+                            50: '#f0fbff',
+                            100: '#e0f8ff',
+                            200: '#b3f0ff',
+                            300: '#7de7ff',
+                            400: '#40daff',
+                            500: '#00bfff',
+                            600: '#0099cc',
+                            700: '#007399',
+                            800: '#004d66',
+                            900: '#002633',
+                        },
+                        neutral: {
+                            50: '#ffffff',
+                            100: '#f8fafc',
+                            200: '#f1f5f9',
+                            300: '#e2e8f0',
+                            400: '#cbd5e1',
+                            500: '#94a3b8',
+                            600: '#64748b',
+                            700: '#475569',
+                            800: '#334155',
+                            900: '#1e293b',
+                        },
+                        dark: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#000000',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'scale-in': 'scaleIn 0.6s ease-out',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(14, 165, 233, 0.3); }
+            to { box-shadow: 0 0 40px rgba(56, 189, 248, 0.6); }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        /* Glass morphism effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(56, 189, 248, 0.1));
+            border: 1px solid transparent;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 1px;
+            background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+            border-radius: inherit;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+        }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-text-secondary {
+            background: linear-gradient(135deg, #00bfff, #7dd3fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(125, 211, 252, 0.5));
+        }
+        
+        /* Special glow effect for Innovation text */
+        .innovation-glow {
+            text-shadow: 0 0 30px rgba(125, 211, 252, 0.6), 0 0 60px rgba(56, 189, 248, 0.4);
+        }
+        
+        /* Logo hover effects */
+        .logo-icon:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.4);
+        }
+        
+        .logo-text:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.3));
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f0f9ff;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #0284c7, #7dd3fc);
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Hero background */
+        .hero-gradient {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 25%, #7dd3fc 50%, #334155 75%, #000000 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            position: relative;
+        }
+        
+        /* Hero overlay for better navbar integration */
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, transparent 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Professional card hover effects */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Button effects */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(14, 165, 233, 0.4);
+        }
+        
+        /* Navigation effects */
+        /* Initial navbar - integrated with hero */
+        .navbar-integrated {
+            background: transparent !important;
+            backdrop-filter: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        
+        .navbar-integrated .logo-icon {
+            background: rgba(255, 255, 255, 0.2) !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            backdrop-filter: blur(10px) !important;
+        }
+        
+        .navbar-integrated .logo-text {
+            color: white !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .navbar-integrated .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .navbar-integrated .nav-link:hover {
+            color: white !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+        }
+        
+        .navbar-integrated .cta-button {
+            background: rgba(255, 255, 255, 0.2) !important;
+            color: white !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            backdrop-filter: blur(10px) !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .navbar-integrated .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3) !important;
+            border: 1px solid rgba(255, 255, 255, 0.4) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
+        }
+        
+        .navbar-integrated .mobile-menu-btn {
+            color: rgba(255, 255, 255, 0.9) !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .navbar-integrated .mobile-menu {
+            background: rgba(14, 165, 233, 0.95) !important;
+            backdrop-filter: blur(20px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+        
+        .navbar-integrated .mobile-menu .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+        
+        .navbar-integrated .mobile-menu .nav-link:hover {
+            color: white !important;
+            background: rgba(255, 255, 255, 0.1) !important;
+        }
+        
+        /* Separated navbar - after scroll */
+        .navbar-separated {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(30px) !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+            transform: translateY(0) !important;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        
+        .navbar-separated .logo-icon {
+            background: linear-gradient(135deg, #0ea5e9, #38bdf8) !important;
+            border: none !important;
+            backdrop-filter: none !important;
+        }
+        
+        .navbar-separated .logo-text {
+            background: linear-gradient(135deg, #0ea5e9, #38bdf8) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            text-shadow: none !important;
+        }
+        
+        .navbar-separated .nav-link {
+            color: #525252 !important;
+            text-shadow: none !important;
+        }
+        
+        .navbar-separated .nav-link:hover {
+            color: #0ea5e9 !important;
+            text-shadow: none !important;
+        }
+        
+        .navbar-separated .cta-button {
+            background: linear-gradient(135deg, #0ea5e9, #38bdf8) !important;
+            color: white !important;
+            border: none !important;
+            backdrop-filter: none !important;
+            text-shadow: none !important;
+        }
+        
+        .navbar-separated .cta-button:hover {
+            background: linear-gradient(135deg, #0284c7, #7dd3fc) !important;
+            color: white !important;
+            border: none !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 15px 35px rgba(14, 165, 233, 0.4) !important;
+        }
+        
+        .navbar-separated .mobile-menu-btn {
+            color: #525252 !important;
+            text-shadow: none !important;
+        }
+        
+        .navbar-separated .mobile-menu {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(20px) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+            border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        .navbar-separated .mobile-menu .nav-link {
+            color: #525252 !important;
+        }
+        
+        .navbar-separated .mobile-menu .nav-link:hover {
+            color: #0ea5e9 !important;
+            background: rgba(14, 165, 233, 0.05) !important;
+        }
+        
+        /* Parallax effect */
+        .parallax {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+        
+        /* Professional spacing */
+        .section-padding {
+            padding: 5rem 0;
+        }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 1024px) {
+            .section-padding {
+                padding: 4rem 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 3rem 0;
+            }
+            
+            /* Mobile Navigation */
+            .navbar-mobile {
+                padding: 0 1rem;
+            }
+            
+            .mobile-menu {
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
+            }
+            
+            /* Mobile Hero */
+            .hero-mobile {
+                padding: 2rem 1rem;
+                min-height: 100vh;
+            }
+            
+            /* Mobile Typography */
+            .hero-title-mobile {
+                font-size: 2.5rem !important;
+                line-height: 1.1 !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .hero-subtitle-mobile {
+                font-size: 1.1rem !important;
+                line-height: 1.5 !important;
+                margin-bottom: 2rem !important;
+            }
+            
+            /* Mobile Buttons */
+            .mobile-btn-stack {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+            }
+            
+            .mobile-btn {
+                width: 100%;
+                padding: 1rem 2rem;
+                font-size: 1rem;
+                justify-content: center;
+            }
+            
+            /* Mobile Stats Grid */
+            .mobile-stats {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem !important;
+                margin-top: 2rem !important;
+            }
+            
+            .mobile-stat-card {
+                padding: 1rem !important;
+            }
+            
+            .mobile-stat-number {
+                font-size: 1.5rem !important;
+            }
+            
+            .mobile-stat-text {
+                font-size: 0.75rem !important;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .section-padding {
+                padding: 2rem 0;
+            }
+            
+            /* Extra small mobile adjustments */
+            .hero-title-mobile {
+                font-size: 2rem !important;
+            }
+            
+            .hero-subtitle-mobile {
+                font-size: 1rem !important;
+            }
+            
+            .mobile-stats {
+                grid-template-columns: 1fr !important;
+                gap: 0.75rem !important;
+            }
+            
+            /* Mobile floating elements */
+            .mobile-float-hide {
+                display: none !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Ultra small screens */
+            .hero-title-mobile {
+                font-size: 1.75rem !important;
+            }
+            
+            .mobile-btn {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .navbar-mobile {
+                padding: 0 0.75rem;
+            }
+        }
+        
+        /* Typography enhancements */
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Loading animation */
+        .loading-dots {
+            display: inline-block;
+        }
+        
+        .loading-dots::after {
+            content: '';
+            animation: dots 2s infinite;
+        }
+        
+        @keyframes dots {
+            0%, 20% { content: ''; }
+            40% { content: '.'; }
+            60% { content: '..'; }
+            80%, 100% { content: '...'; }
+        }
+    </style>
+</head>
+
+<body class="font-sans text-neutral-900 overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 navbar-integrated" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 navbar-mobile border-0">
+            <div class="flex justify-between items-center h-16 sm:h-20 border-0">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <div class="logo-icon w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-primary-500 to-accent-500 rounded-lg sm:rounded-xl flex items-center justify-center transition-all duration-500 shadow-lg">
+                        <i class="fas fa-atom text-white text-sm sm:text-lg"></i>
+                    </div>
+                    <span class="logo-text text-xl sm:text-2xl font-bold gradient-text transition-all duration-500">Knowvia</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-neutral-700 hover:text-primary-600 transition-colors duration-300 font-medium">Home</a>
+                    <a href="#about" class="nav-link text-neutral-700 hover:text-primary-600 transition-colors duration-300 font-medium">About</a>
+                    <a href="#services" class="nav-link text-neutral-700 hover:text-primary-600 transition-colors duration-300 font-medium">Services</a>
+                    <a href="#portfolio" class="nav-link text-neutral-700 hover:text-primary-600 transition-colors duration-300 font-medium">Portfolio</a>
+                    <a href="#contact" class="nav-link text-neutral-700 hover:text-primary-600 transition-colors duration-300 font-medium">Contact</a>
+                </div>
+                
+                <!-- CTA Button -->
+                <div class="hidden md:block">
+                    <button class="cta-button btn-primary bg-primary-600 text-white px-4 py-2 lg:px-6 lg:py-3 rounded-lg lg:rounded-xl font-semibold text-sm lg:text-base hover:bg-primary-700 transition-all duration-500">
+                        Get Started
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn md:hidden text-neutral-700 hover:text-primary-600 transition-colors duration-500" id="mobile-menu-btn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu md:hidden bg-white/95 backdrop-blur-lg hidden transition-all duration-300 ease-out shadow-lg" id="mobile-menu">
+            <div class="px-4 py-6 space-y-4 max-h-[calc(100vh-4rem)] overflow-y-auto">
+                <a href="#home" class="nav-link block text-neutral-700 hover:text-primary-600 transition-colors font-medium py-3 px-2 rounded-lg hover:bg-primary-50 -mx-2">Home</a>
+                <a href="#about" class="nav-link block text-neutral-700 hover:text-primary-600 transition-colors font-medium py-3 px-2 rounded-lg hover:bg-primary-50 -mx-2">About</a>
+                <a href="#services" class="nav-link block text-neutral-700 hover:text-primary-600 transition-colors font-medium py-3 px-2 rounded-lg hover:bg-primary-50 -mx-2">Services</a>
+                <a href="#portfolio" class="nav-link block text-neutral-700 hover:text-primary-600 transition-colors font-medium py-3 px-2 rounded-lg hover:bg-primary-50 -mx-2">Portfolio</a>
+                <a href="#contact" class="nav-link block text-neutral-700 hover:text-primary-600 transition-colors font-medium py-3 px-2 rounded-lg hover:bg-primary-50 -mx-2">Contact</a>
+                <button class="cta-button w-full btn-primary bg-primary-600 text-white px-6 py-4 rounded-xl font-semibold mt-6 hover:bg-primary-700 transition-all duration-500 text-center">
+                    Get Started
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen relative overflow-hidden hero-gradient">
+
+
+        
+        <!-- Hero Content -->
+        <div class="flex items-center justify-center min-h-screen hero-mobile">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20">
+                <div class="animate-fade-in">
+
+                    
+                    <!-- Main Heading -->
+                    <h1 class="hero-title-mobile text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-4 sm:mb-6 mt-16 sm:mt-20 text-shadow">
+                        Empowering New
+                        <span class="block gradient-text-secondary innovation-glow">Innovation</span>
+                    </h1>
+                    
+                    <!-- Subheading -->
+                    <p class="hero-subtitle-mobile text-base sm:text-xl md:text-2xl text-white/90 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
+                        Transform your ideas into reality with cutting-edge technology solutions that drive growth and create lasting impact.
+                    </p>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mobile-btn-stack px-4 sm:px-0">
+                        <button class="mobile-btn btn-primary bg-primary-100 text-primary-700 px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold text-base sm:text-lg hover:bg-primary-200 transition-all duration-300 flex items-center justify-center">
+                            <i class="fas fa-play mr-2 text-sm sm:text-base"></i>
+                            Explore Solutions
+                        </button>
+                        <button class="mobile-btn glass text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold text-base sm:text-lg hover:bg-white/20 transition-all duration-300 flex items-center justify-center">
+                            <i class="fas fa-calendar mr-2 text-sm sm:text-base"></i>
+                            Schedule Demo
+                        </button>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="mobile-stats grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mt-12 sm:mt-16 max-w-4xl mx-auto px-4 sm:px-0">
+                        <div class="mobile-stat-card glass rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center">
+                            <div class="mobile-stat-number text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">500+</div>
+                            <div class="mobile-stat-text text-white/80 text-xs sm:text-sm">Projects Delivered</div>
+                        </div>
+                        <div class="mobile-stat-card glass rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center">
+                            <div class="mobile-stat-number text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">98%</div>
+                            <div class="mobile-stat-text text-white/80 text-xs sm:text-sm">Client Satisfaction</div>
+                        </div>
+                        <div class="mobile-stat-card glass rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center">
+                            <div class="mobile-stat-number text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">50+</div>
+                            <div class="mobile-stat-text text-white/80 text-xs sm:text-sm">Expert Team</div>
+                        </div>
+                        <div class="mobile-stat-card glass rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center">
+                            <div class="mobile-stat-number text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">24/7</div>
+                            <div class="mobile-stat-text text-white/80 text-xs sm:text-sm">Support</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div class="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/50 rounded-full flex justify-center">
+                <div class="w-1 h-2 sm:h-3 bg-white/70 rounded-full mt-1 sm:mt-2 animate-pulse"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding bg-white relative pt-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Content -->
+                <div class="animate-slide-up">
+                    <div class="inline-flex items-center bg-primary-50 rounded-full px-4 py-2 mb-6">
+                        <i class="fas fa-lightbulb text-primary-500 mr-2"></i>
+                        <span class="text-primary-700 font-medium text-sm">About Knowvia</span>
+                    </div>
+                    
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold text-neutral-900 mb-6">
+                        Pioneering the Future of
+                        <span class="gradient-text">Technology</span>
+                    </h2>
+                    
+                    <p class="text-lg text-neutral-600 mb-8 leading-relaxed">
+                        At Knowvia, we believe in the transformative power of technology. Our mission is to bridge the gap between innovative ideas and practical solutions, helping businesses and individuals harness the full potential of digital transformation.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-6 h-6 bg-primary-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-white text-xs"></i>
+                            </div>
+                            <span class="text-neutral-700">Cutting-edge technology solutions</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-6 h-6 bg-primary-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-white text-xs"></i>
+                            </div>
+                            <span class="text-neutral-700">Expert team of innovators</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-6 h-6 bg-primary-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-white text-xs"></i>
+                            </div>
+                            <span class="text-neutral-700">Proven track record of success</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-8 py-4 rounded-xl font-semibold">
+                        Learn More About Us
+                    </button>
+                </div>
+                
+                <!-- Image/Visual -->
+                <div class="relative animate-scale-in">
+                    <div class="relative z-10">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Team collaboration" 
+                             class="rounded-2xl shadow-2xl w-full h-96 object-cover">
+                    </div>
+                    <div class="absolute -top-6 -left-6 w-full h-full bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-2xl -z-10"></div>
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-accent-500/20 rounded-full blur-2xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding bg-primary-50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center bg-primary-50 rounded-full px-4 py-2 mb-6">
+                    <i class="fas fa-cogs text-primary-500 mr-2"></i>
+                    <span class="text-primary-700 font-medium text-sm">Our Services</span>
+                </div>
+                
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-neutral-900 mb-6">
+                    Comprehensive
+                    <span class="gradient-text">Solutions</span>
+                </h2>
+                
+                <p class="text-lg text-neutral-600 max-w-3xl mx-auto">
+                    From concept to deployment, we offer end-to-end technology services that drive innovation and accelerate growth.
+                </p>
+            </div>
+            
+            <!-- Services Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg border border-neutral-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-neutral-900 mb-4">Software Development</h3>
+                    <p class="text-neutral-600 mb-6">Custom software solutions tailored to your business needs, built with modern technologies and best practices.</p>
+                    <a href="#" class="text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+                        Learn More <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg border border-neutral-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-neutral-900 mb-4">Mobile Applications</h3>
+                    <p class="text-neutral-600 mb-6">Native and cross-platform mobile apps that deliver exceptional user experiences across all devices.</p>
+                    <a href="#" class="text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+                        Learn More <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg border border-neutral-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-accent-500 to-accent-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-cloud text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-neutral-900 mb-4">Cloud Solutions</h3>
+                    <p class="text-neutral-600 mb-6">Scalable cloud infrastructure and migration services to optimize performance and reduce costs.</p>
+                    <a href="#" class="text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+                        Learn More <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg border border-neutral-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-neutral-900 mb-4">AI & Machine Learning</h3>
+                    <p class="text-neutral-600 mb-6">Intelligent solutions powered by artificial intelligence to automate processes and gain insights.</p>
+                    <a href="#" class="text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+                        Learn More <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                
+                
+                <!-- Service 6 -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg border border-neutral-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-accent-500 to-primary-500 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-neutral-900 mb-4">Data Analytics</h3>
+                    <p class="text-neutral-600 mb-6">Transform raw data into actionable insights with advanced analytics and visualization tools.</p>
+                    <a href="#" class="text-primary-600 font-semibold hover:text-primary-700 transition-colors">
+                        Learn More <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section-padding bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center bg-primary-50 rounded-full px-4 py-2 mb-6">
+                    <i class="fas fa-briefcase text-primary-500 mr-2"></i>
+                    <span class="text-primary-700 font-medium text-sm">Our Work</span>
+                </div>
+                
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-neutral-900 mb-6">
+                    Featured
+                    <span class="gradient-text">Projects</span>
+                </h2>
+                
+                <p class="text-lg text-neutral-600 max-w-3xl mx-auto">
+                    Discover how we've helped businesses transform their operations and achieve remarkable results.
+                </p>
+            </div>
+            
+            <!-- Portfolio Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="card-hover group relative overflow-hidden rounded-2xl shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="E-commerce Platform" 
+                         class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-neutral-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 class="text-xl font-bold mb-2">E-commerce Platform</h3>
+                        <p class="text-sm text-neutral-200 mb-4">Modern e-commerce solution with AI-powered recommendations</p>
+                        <div class="flex space-x-2">
+                            <span class="px-2 py-1 bg-primary-500 rounded text-xs">React</span>
+                            <span class="px-2 py-1 bg-secondary-500 rounded text-xs">Node.js</span>
+                            <span class="px-2 py-1 bg-accent-500 rounded text-xs">AI</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="card-hover group relative overflow-hidden rounded-2xl shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Analytics Dashboard" 
+                         class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-neutral-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 class="text-xl font-bold mb-2">Analytics Dashboard</h3>
+                        <p class="text-sm text-neutral-200 mb-4">Real-time data visualization and business intelligence platform</p>
+                        <div class="flex space-x-2">
+                            <span class="px-2 py-1 bg-primary-500 rounded text-xs">Vue.js</span>
+                            <span class="px-2 py-1 bg-secondary-500 rounded text-xs">Python</span>
+                            <span class="px-2 py-1 bg-accent-500 rounded text-xs">D3.js</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="card-hover group relative overflow-hidden rounded-2xl shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Mobile Banking App" 
+                         class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-neutral-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 class="text-xl font-bold mb-2">Mobile Banking App</h3>
+                        <p class="text-sm text-neutral-200 mb-4">Secure and intuitive mobile banking solution</p>
+                        <div class="flex space-x-2">
+                            <span class="px-2 py-1 bg-primary-500 rounded text-xs">Flutter</span>
+                            <span class="px-2 py-1 bg-secondary-500 rounded text-xs">Firebase</span>
+                            <span class="px-2 py-1 bg-accent-500 rounded text-xs">Security</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- View All Button -->
+            <div class="text-center mt-12">
+                <button class="btn-primary bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-8 py-4 rounded-xl font-semibold">
+                    View All Projects
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="section-padding bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center bg-primary-50 rounded-full px-4 py-2 mb-6">
+                    <i class="fas fa-cube text-primary-500 mr-2"></i>
+                    <span class="text-primary-700 font-medium text-sm">Our Products</span>
+                </div>
+                
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-neutral-900 mb-6">
+                    Innovative
+                    <span class="gradient-text">Solutions</span>
+                </h2>
+                
+                <p class="text-lg text-neutral-600 max-w-3xl mx-auto">
+                    Discover our cutting-edge products designed to streamline your business operations and boost productivity.
+                </p>
+            </div>
+            
+            <!-- Products Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="card-hover bg-white rounded-2xl p-6 shadow-lg border border-neutral-100">
+                    <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-clipboard-check text-white text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-neutral-900 mb-3">Document Tracker</h3>
+                    <p class="text-neutral-600 text-sm mb-4">Streamline vendor-consultant workflows with intelligent document tracking and management system.</p>
+                    <div class="flex items-center text-primary-600 text-sm font-medium">
+                        <i class="fas fa-arrow-right mr-1"></i>
+                        Learn More
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="card-hover bg-white rounded-2xl p-6 shadow-lg border border-neutral-100">
+                    <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4 p-2">
+                        <img src="download (1).png" alt="Expofloor Plan Logo" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-lg font-bold text-neutral-900 mb-3">Expofloor Plan</h3>
+                    <p class="text-neutral-600 text-sm mb-4">Create stunning 2D and 3D floor plans for exhibitions and events with our intuitive design tools.</p>
+                    <div class="flex items-center text-primary-600 text-sm font-medium">
+                        <i class="fas fa-arrow-right mr-1"></i>
+                        Explore Now
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="card-hover bg-white rounded-2xl p-6 shadow-lg border border-neutral-100">
+                    <div class="w-12 h-12 bg-gradient-to-r from-accent-500 to-accent-600 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-paper-plane text-white text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-neutral-900 mb-3">Email Sender Pro</h3>
+                    <p class="text-neutral-600 text-sm mb-4">Send 1000+ emails in one click with our powerful bulk email automation and tracking system.</p>
+                    <div class="flex items-center text-primary-600 text-sm font-medium">
+                        <i class="fas fa-arrow-right mr-1"></i>
+                        Get Started
+                    </div>
+                </div>
+                
+                <!-- Product 4 - Coming Soon -->
+                <div class="card-hover bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-2xl p-6 shadow-lg border border-neutral-200 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 rounded-full -mr-8 -mt-8"></div>
+                    <div class="w-12 h-12 bg-gradient-to-r from-neutral-400 to-neutral-500 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-lightbulb text-white text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-neutral-900 mb-3">New Innovation</h3>
+                    <p class="text-neutral-600 text-sm mb-4">Something exciting is brewing! Stay tuned for our latest groundbreaking solution.</p>
+                    <div class="flex items-center text-neutral-500 text-sm font-medium">
+                        <i class="fas fa-clock mr-1"></i>
+                        Coming Soon
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section-padding bg-neutral-50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center bg-primary-50 rounded-full px-4 py-2 mb-6">
+                    <i class="fas fa-quote-left text-primary-500 mr-2"></i>
+                    <span class="text-primary-700 font-medium text-sm">Testimonials</span>
+                </div>
+                
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-neutral-900 mb-6">
+                    What Our
+                    <span class="gradient-text">Clients Say</span>
+                </h2>
+            </div>
+            
+            <!-- Testimonials Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg border border-neutral-100">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-accent-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-neutral-600 mb-6 italic">"Knowvia transformed our business with their innovative solutions. The team's expertise and dedication exceeded our expectations."</p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                             alt="Client" 
+                             class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <div class="font-semibold text-neutral-900">John Smith</div>
+                            <div class="text-sm text-neutral-600">CEO, TechCorp</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg border border-neutral-100">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-accent-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-neutral-600 mb-6 italic">"Outstanding service and cutting-edge technology. Knowvia helped us achieve our digital transformation goals efficiently."</p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                             alt="Sarah Johnson" 
+                             class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <div class="font-semibold text-neutral-900">Sarah Johnson</div>
+                            <div class="text-sm text-neutral-600">CTO, InnovateLab</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg border border-neutral-100">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-accent-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-neutral-600 mb-6 italic">"Professional, reliable, and innovative. The perfect partner for our technology needs. Highly recommended!"</p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                             alt="Client" 
+                             class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <div class="font-semibold text-neutral-900">Michael Chen</div>
+                            <div class="text-sm text-neutral-600">Founder, StartupX</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Contact Info -->
+                <div>
+                    <div class="inline-flex items-center bg-primary-50 rounded-full px-4 py-2 mb-6">
+                        <i class="fas fa-envelope text-primary-500 mr-2"></i>
+                        <span class="text-primary-700 font-medium text-sm">Get In Touch</span>
+                    </div>
+                    
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold text-neutral-900 mb-6">
+                        Let's Build Something
+                        <span class="gradient-text">Amazing</span>
+                    </h2>
+                    
+                    <p class="text-lg text-neutral-600 mb-8">
+                        Ready to transform your ideas into reality? Get in touch with our team of experts and let's discuss how we can help you achieve your goals.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-phone text-primary-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-neutral-900">Phone</div>
+                                <div class="text-neutral-600">+1 (555) 123-4567</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-envelope text-primary-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-neutral-900">Email</div>
+                                <div class="text-neutral-600">hello@knowvia.com</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-primary-600"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-neutral-900">Office</div>
+                                <div class="text-neutral-600">123 Innovation Street, Tech City, TC 12345</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="bg-neutral-50 rounded-2xl p-8">
+                    <form class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-700 mb-2">First Name</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-700 mb-2">Last Name</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-700 mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-700 mb-2">Subject</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-neutral-700 mb-2">Message</label>
+                            <textarea rows="4" class="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors resize-none"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full btn-primary bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-8 py-4 rounded-xl font-semibold">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/20 to-secondary-900/20"></div>
+        
+        <div class="relative z-10">
+            <!-- Main Footer -->
+            <div class="section-padding">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
+                        <!-- Company Info -->
+                        <div class="lg:col-span-2">
+                            <div class="flex items-center space-x-3 mb-6">
+                                <div class="w-10 h-10 bg-gradient-to-r from-primary-500 to-accent-500 rounded-xl flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-atom text-white text-lg"></i>
+                                </div>
+                                <span class="text-2xl font-bold gradient-text">Knowvia</span>
+                            </div>
+                            <p class="text-neutral-300 mb-6 max-w-md">
+                                Empowering innovation through cutting-edge technology solutions. We transform ideas into reality and help businesses thrive in the digital age.
+                            </p>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Links -->
+                        <div>
+                            <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+                            <ul class="space-y-3">
+                                <li><a href="#home" class="text-neutral-300 hover:text-white transition-colors">Home</a></li>
+                                <li><a href="#about" class="text-neutral-300 hover:text-white transition-colors">About</a></li>
+                                <li><a href="#services" class="text-neutral-300 hover:text-white transition-colors">Services</a></li>
+                                <li><a href="#portfolio" class="text-neutral-300 hover:text-white transition-colors">Portfolio</a></li>
+                                <li><a href="#contact" class="text-neutral-300 hover:text-white transition-colors">Contact</a></li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Services -->
+                        <div>
+                            <h3 class="text-lg font-semibold mb-6">Services</h3>
+                            <ul class="space-y-3">
+                                <li><a href="#" class="text-neutral-300 hover:text-white transition-colors">Software Development</a></li>
+                                <li><a href="#" class="text-neutral-300 hover:text-white transition-colors">Mobile Apps</a></li>
+                                <li><a href="#" class="text-neutral-300 hover:text-white transition-colors">Cloud Solutions</a></li>
+                                <li><a href="#" class="text-neutral-300 hover:text-white transition-colors">AI & ML</a></li>
+                                <li><a href="#" class="text-neutral-300 hover:text-white transition-colors">Cybersecurity</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Footer -->
+            <div class="border-t border-neutral-800">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="text-neutral-400 text-sm">
+                            © 2024 Knowvia. All rights reserved.
+                        </div>
+                        <div class="flex space-x-6 mt-4 md:mt-0">
+                            <a href="#" class="text-neutral-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                            <a href="#" class="text-neutral-400 hover:text-white text-sm transition-colors">Terms of Service</a>
+                            <a href="#" class="text-neutral-400 hover:text-white text-sm transition-colors">Cookie Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            
+            // Toggle hamburger icon
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.className = 'fas fa-bars text-xl';
+            } else {
+                icon.className = 'fas fa-times text-xl';
+            }
+        });
+        
+        // Close mobile menu when clicking on nav links
+        document.querySelectorAll('.mobile-menu .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.className = 'fas fa-bars text-xl';
+            });
+        });
+        
+        // Navbar scroll effect - Separation effect on scroll
+        let ticking = false;
+        
+        function updateNavbar() {
+            const navbar = document.getElementById('navbar');
+            const heroSection = document.getElementById('home');
+            const heroHeight = heroSection.offsetHeight;
+            const scrollProgress = Math.min(window.scrollY / (heroHeight * 0.3), 1); // Start separating at 30% of hero height
+            
+            if (scrollProgress > 0.1) { // Start transformation after scrolling 10% of hero height
+                navbar.classList.remove('navbar-integrated');
+                navbar.classList.add('navbar-separated');
+                
+                // Add subtle scale effect during separation
+                navbar.style.transform = `translateY(${Math.max(0, (1 - scrollProgress) * -10)}px)`;
+            } else {
+                navbar.classList.remove('navbar-separated');
+                navbar.classList.add('navbar-integrated');
+                navbar.style.transform = 'translateY(0px)';
+            }
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        });
+        
+        // Smooth scrolling for navigation links with navbar offset
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Responsive navbar height - smaller on mobile
+                    const isMobile = window.innerWidth < 640;
+                    const navbarHeight = isMobile ? 64 : 80;
+                    const targetPosition = target.offsetTop - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Animate elements on scroll
+        gsap.utils.toArray('.animate-slide-up').forEach(element => {
+            gsap.fromTo(element, 
+                { y: 50, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+        
+        gsap.utils.toArray('.animate-scale-in').forEach(element => {
+            gsap.fromTo(element, 
+                { scale: 0.8, opacity: 0 },
+                {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.6,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+        
+        // Parallax effect for floating elements
+        gsap.utils.toArray('.animate-float').forEach(element => {
+            gsap.to(element, {
+                y: -30,
+                duration: 2,
+                ease: "power1.inOut",
+                yoyo: true,
+                repeat: -1
+            });
+        });
+        
+        // Form submission (placeholder)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We\'ll get back to you soon.');
+        });
+        
+        // Add loading animation to buttons
+        document.querySelectorAll('.btn-primary').forEach(button => {
+            button.addEventListener('click', function() {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Loading...';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>

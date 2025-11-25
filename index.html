@@ -160,40 +160,40 @@
                 extend: {
                     colors: {
                         primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
                         },
                         secondary: {
-                            50: '#f8fafc',
-                            100: '#f1f5f9',
-                            200: '#e2e8f0',
-                            300: '#cbd5e1',
-                            400: '#94a3b8',
-                            500: '#64748b',
-                            600: '#475569',
-                            700: '#334155',
-                            800: '#1e293b',
-                            900: '#0f172a',
+                            50: '#fafafa',
+                            100: '#f4f4f5',
+                            200: '#e4e4e7',
+                            300: '#d4d4d8',
+                            400: '#a1a1aa',
+                            500: '#71717a',
+                            600: '#52525b',
+                            700: '#3f3f46',
+                            800: '#27272a',
+                            900: '#18181b',
                         },
                         accent: {
-                            50: '#f0fbff',
-                            100: '#e0f8ff',
-                            200: '#b3f0ff',
-                            300: '#7de7ff',
-                            400: '#40daff',
-                            500: '#00bfff',
-                            600: '#0099cc',
-                            700: '#007399',
-                            800: '#004d66',
-                            900: '#002633',
+                            50: '#fef7ed',
+                            100: '#fdedd3',
+                            200: '#fbd9a5',
+                            300: '#f8c06d',
+                            400: '#f59e0b',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
                         },
                         neutral: {
                             50: '#ffffff',
@@ -208,15 +208,15 @@
                             900: '#1e293b',
                         },
                         dark: {
-                            50: '#f8fafc',
-                            100: '#f1f5f9',
-                            200: '#e2e8f0',
-                            300: '#cbd5e1',
-                            400: '#94a3b8',
-                            500: '#64748b',
-                            600: '#475569',
-                            700: '#334155',
-                            800: '#1e293b',
+                            50: '#fafafa',
+                            100: '#f4f4f5',
+                            200: '#e4e4e7',
+                            300: '#d4d4d8',
+                            400: '#a1a1aa',
+                            500: '#71717a',
+                            600: '#52525b',
+                            700: '#3f3f46',
+                            800: '#27272a',
                             900: '#000000',
                         }
                     },
@@ -302,23 +302,23 @@
         
         /* Gradient text */
         .gradient-text {
-            background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+            background: linear-gradient(135deg, #fb923c, #fdba74);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
         .gradient-text-secondary {
-            background: linear-gradient(135deg, #00bfff, #7dd3fc);
+            background: linear-gradient(135deg, #fb923c, #fed7aa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            filter: drop-shadow(0 0 20px rgba(125, 211, 252, 0.5));
+            filter: drop-shadow(0 0 20px rgba(251, 146, 60, 0.5));
         }
         
         /* Special glow effect for Innovation text */
         .innovation-glow {
-            text-shadow: 0 0 30px rgba(125, 211, 252, 0.6), 0 0 60px rgba(56, 189, 248, 0.4);
+            text-shadow: 0 0 30px rgba(249, 115, 22, 0.6), 0 0 60px rgba(234, 88, 12, 0.4);
         }
         
         /* Logo hover effects */
@@ -339,16 +339,16 @@
         }
         
         ::-webkit-scrollbar-track {
-            background: #f0f9ff;
+            background: #fafafa;
         }
         
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+            background: linear-gradient(135deg, #f97316, #ea580c);
             border-radius: 4px;
         }
         
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #0284c7, #7dd3fc);
+            background: linear-gradient(135deg, #ea580c, #c2410c);
         }
         
         /* Smooth scroll */
@@ -358,7 +358,7 @@
         
         /* Hero background */
         .hero-gradient {
-            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 25%, #7dd3fc 50%, #334155 75%, #000000 100%);
+            background: linear-gradient(135deg, #000000 0%, #27272a 25%, #3f3f46 50%, #fb923c 75%, #fdba74 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
             position: relative;
@@ -417,7 +417,7 @@
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(14, 165, 233, 0.4);
+            box-shadow: 0 15px 35px rgba(249, 115, 22, 0.4);
         }
         
         /* Navigation effects */
@@ -474,9 +474,9 @@
         }
         
         .navbar-integrated .mobile-menu {
-            background: rgba(14, 165, 233, 0.95) !important;
+            background: rgba(0, 0, 0, 0.95) !important;
             backdrop-filter: blur(20px) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border: 1px solid rgba(249, 115, 22, 0.3) !important;
         }
         
         .navbar-integrated .mobile-menu .nav-link {
@@ -499,7 +499,7 @@
         }
         
         .navbar-separated .logo-icon {
-            background: linear-gradient(135deg, #0ea5e9, #38bdf8) !important;
+            background: linear-gradient(135deg, #fb923c, #fdba74) !important;
             border: none !important;
             backdrop-filter: none !important;
         }
@@ -514,12 +514,12 @@
         }
         
         .navbar-separated .nav-link:hover {
-            color: #0ea5e9 !important;
+            color: #fb923c !important;
             text-shadow: none !important;
         }
         
         .navbar-separated .cta-button {
-            background: linear-gradient(135deg, #0ea5e9, #38bdf8) !important;
+            background: linear-gradient(135deg, #fb923c, #fdba74) !important;
             color: white !important;
             border: none !important;
             backdrop-filter: none !important;
@@ -527,11 +527,11 @@
         }
         
         .navbar-separated .cta-button:hover {
-            background: linear-gradient(135deg, #0284c7, #7dd3fc) !important;
+            background: linear-gradient(135deg, #f97316, #fb923c) !important;
             color: white !important;
             border: none !important;
             transform: translateY(-2px) !important;
-            box-shadow: 0 15px 35px rgba(14, 165, 233, 0.4) !important;
+            box-shadow: 0 15px 35px rgba(251, 146, 60, 0.4) !important;
         }
         
         .navbar-separated .mobile-menu-btn {
@@ -551,8 +551,8 @@
         }
         
         .navbar-separated .mobile-menu .nav-link:hover {
-            color: #0ea5e9 !important;
-            background: rgba(14, 165, 233, 0.05) !important;
+            color: #f97316 !important;
+            background: rgba(249, 115, 22, 0.05) !important;
         }
         
         /* Parallax effect */
@@ -822,7 +822,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section-padding bg-white relative pt-24" itemscope itemtype="https://schema.org/AboutPage">
+    <section id="about" class="section-padding bg-neutral-50 relative pt-24" itemscope itemtype="https://schema.org/AboutPage">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <!-- Content -->
@@ -862,7 +862,7 @@
                         </div>
                     </div>
                     
-                    <a href="about.html" class="bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-8 py-4 rounded-xl font-semibold inline-block hover:from-primary-600 hover:to-secondary-600 transition-all duration-300">
+                    <a href="about.html" class="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-8 py-4 rounded-xl font-semibold inline-block hover:from-primary-600 hover:to-primary-700 transition-all duration-300">
                         Learn More About Us
                     </a>
                 </div>
@@ -878,7 +878,7 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="section-padding bg-primary-50 relative" itemscope itemtype="https://schema.org/Service">
+    <section id="services" class="section-padding bg-white relative" itemscope itemtype="https://schema.org/Service">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
             <div class="text-center mb-16">
@@ -927,7 +927,7 @@
                 
                 <!-- Service 4 -->
                 <div class="card-hover bg-white rounded-2xl p-8 shadow-lg border border-neutral-100" itemscope itemtype="https://schema.org/Service">
-                    <div class="w-16 h-16 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-6">
                         <i class="fas fa-brain text-white text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-neutral-900 mb-4" itemprop="name">AI & Machine Learning</h3>
@@ -939,7 +939,7 @@
                 
                 <!-- Service 5 -->
                 <div class="card-hover bg-white rounded-2xl p-8 shadow-lg border border-neutral-100" itemscope itemtype="https://schema.org/Service">
-                    <div class="w-16 h-16 bg-gradient-to-r from-secondary-500 to-accent-500 rounded-2xl flex items-center justify-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-r from-secondary-800 to-secondary-900 rounded-2xl flex items-center justify-center mb-6">
                         <i class="fas fa-robot text-white text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-neutral-900 mb-4" itemprop="name">Robotics</h3>
@@ -951,7 +951,7 @@
                 
                 <!-- Service 6 -->
                 <div class="card-hover bg-white rounded-2xl p-8 shadow-lg border border-neutral-100" itemscope itemtype="https://schema.org/Service">
-                    <div class="w-16 h-16 bg-gradient-to-r from-accent-500 to-primary-500 rounded-2xl flex items-center justify-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-r from-primary-500 to-secondary-800 rounded-2xl flex items-center justify-center mb-6">
                         <i class="fas fa-chart-line text-white text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-neutral-900 mb-4" itemprop="name">Data Analytics</h3>
@@ -965,7 +965,7 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="section-padding bg-white relative">
+    <section id="portfolio" class="section-padding bg-neutral-50 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
             <div class="text-center mb-16">
@@ -1040,7 +1040,7 @@
             
             <!-- View All Button -->
             <div class="text-center mt-12">
-                <a href="portfolio.html" class="btn-primary bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-8 py-4 rounded-xl font-semibold inline-block">
+                <a href="portfolio.html" class="btn-primary bg-gradient-to-r from-primary-500 to-primary-600 text-white px-8 py-4 rounded-xl font-semibold inline-block">
                     View All Projects
                 </a>
             </div>
@@ -1097,7 +1097,7 @@
                 
                 <!-- Product 3 -->
                 <div class="card-hover bg-white rounded-2xl p-6 shadow-lg border border-neutral-100">
-                    <div class="w-12 h-12 bg-gradient-to-r from-accent-500 to-accent-600 rounded-xl flex items-center justify-center mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-r from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
                         <i class="fas fa-paper-plane text-white text-lg"></i>
                     </div>
                     <h3 class="text-lg font-bold text-neutral-900 mb-3">Max mailer </h3>
@@ -1137,7 +1137,7 @@
 
                 <!-- Product 6 -->
                 <div class="card-hover bg-white rounded-2xl p-6 shadow-lg border border-neutral-100">
-                    <div class="w-12 h-12 bg-gradient-to-r from-accent-500 to-accent-600 rounded-xl flex items-center justify-center mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-r from-secondary-800 to-secondary-900 rounded-xl flex items-center justify-center mb-4">
                         <i class="fas fa-cogs text-white text-lg"></i>
                     </div>
                     <h3 class="text-lg font-bold text-neutral-900 mb-3">Smart Process Tracker</h3>
@@ -1381,7 +1381,7 @@
                             <textarea rows="4" class="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors resize-none"></textarea>
                         </div>
                         
-                        <button type="submit" class="w-full btn-primary bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-8 py-4 rounded-xl font-semibold">
+                        <button type="submit" class="w-full btn-primary bg-gradient-to-r from-primary-500 to-primary-600 text-white px-8 py-4 rounded-xl font-semibold">
                             Send Message
                         </button>
                     </form>
@@ -1392,7 +1392,7 @@
 
     <!-- Footer -->
     <footer class="bg-neutral-900 text-white relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/20 to-secondary-900/20"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/20 to-neutral-900/20"></div>
         
         <div class="relative z-10">
             <!-- Main Footer -->
@@ -1410,16 +1410,16 @@
                                 Empowering innovation through cutting-edge technology solutions. We transform ideas into reality and help businesses thrive in the digital age.
                             </p>
                             <div class="flex space-x-4">
-                                <a href="#" class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors">
+                                <a href="#" class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-primary-500 transition-colors">
                                     <i class="fab fa-twitter"></i>
                                 </a>
-                                <a href="#" class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors">
+                                <a href="#" class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-primary-500 transition-colors">
                                     <i class="fab fa-linkedin"></i>
                                 </a>
-                                <a href="#" class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors">
+                                <a href="#" class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-primary-500 transition-colors">
                                     <i class="fab fa-github"></i>
                                 </a>
-                                <a href="#" class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors">
+                                <a href="#" class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-primary-500 transition-colors">
                                     <i class="fab fa-instagram"></i>
                                 </a>
                             </div>

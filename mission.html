@@ -24,28 +24,28 @@
                 extend: {
                     colors: {
                         primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
                         },
                         secondary: {
-                            50: '#f8fafc',
-                            100: '#f1f5f9',
-                            200: '#e2e8f0',
-                            300: '#cbd5e1',
-                            400: '#94a3b8',
-                            500: '#64748b',
-                            600: '#475569',
-                            700: '#334155',
-                            800: '#1e293b',
-                            900: '#0f172a',
+                            50: '#fafafa',
+                            100: '#f4f4f5',
+                            200: '#e4e4e7',
+                            300: '#d4d4d8',
+                            400: '#a1a1aa',
+                            500: '#71717a',
+                            600: '#52525b',
+                            700: '#3f3f46',
+                            800: '#27272a',
+                            900: '#18181b',
                         }
                     },
                     fontFamily: {
@@ -59,10 +59,18 @@
     
     <style>
         .gradient-text {
-            background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+            background: linear-gradient(135deg, #f97316, #ea580c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+        
+        .gradient-text-secondary {
+            background: linear-gradient(135deg, #f97316, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(249, 115, 22, 0.5));
         }
         
         .glass {
@@ -83,7 +91,7 @@
         .font-archivo-black { font-family: 'Archivo Black', sans-serif; }
         
         .hero-gradient {
-            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 25%, #7dd3fc 50%, #334155 75%, #000000 100%);
+            background: linear-gradient(135deg, #000000 0%, #27272a 25%, #3f3f46 50%, #f97316 75%, #ea580c 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
         }
@@ -182,7 +190,7 @@
     </section>
 
     <!-- Mission Pillars -->
-    <section class="py-20 bg-primary-50">
+    <section class="py-20 bg-neutral-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-serif font-bold text-neutral-900 mb-6">
@@ -296,7 +304,7 @@
                              alt="Team Collaboration" 
                              class="rounded-2xl shadow-2xl w-full h-96 object-cover">
                     </div>
-                    <div class="absolute -top-6 -left-6 w-full h-full bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-2xl -z-10"></div>
+                    <div class="absolute -top-6 -left-6 w-full h-full bg-gradient-to-r from-primary-500/20 to-primary-600/20 rounded-2xl -z-10"></div>
                 </div>
             </div>
         </div>
@@ -304,7 +312,7 @@
 
     <!-- Call to Action -->
     <section class="py-20 bg-neutral-900 text-white relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/20 to-secondary-900/20"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/20 to-neutral-900/20"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6">
                 Ready to Transform Your Ideas?
@@ -314,7 +322,7 @@
                 your success is our priority.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="index.html#contact" class="bg-primary-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-primary-700 transition-all duration-300">
+                <a href="index.html#contact" class="bg-primary-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-primary-600 transition-all duration-300">
                     Start Your Journey
                 </a>
                 <a href="vision.html" class="glass text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300">

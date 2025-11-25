@@ -27,13 +27,15 @@
                 extend: {
                     colors: {
                         primary: {
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
                         },
                         secondary: {
-                            800: '#1e293b',
-                            900: '#0f172a',
+                            800: '#27272a',
+                            900: '#18181b',
                         }
                     },
                     fontFamily: {
@@ -44,6 +46,29 @@
             }
         }
     </script>
+    
+    <style>
+        .portfolio-item {
+            display: flex;
+            height: 100%;
+        }
+        
+        .portfolio-item > div {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .portfolio-item .p-6 {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .portfolio-item .text-gray-600 {
+            flex: 1;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 font-inter">
     <!-- Navigation -->
@@ -77,12 +102,12 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-24 pb-16 bg-gradient-to-br from-primary-50 to-blue-100">
+    <section class="pt-24 pb-16 bg-gradient-to-br from-neutral-900 to-neutral-800 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold text-secondary-900 mb-6 font-playfair">
-                Our <span class="text-primary-600">Portfolio</span>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 font-playfair">
+                Our <span class="text-primary-500">Portfolio</span>
             </h1>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
                 Discover our innovative projects and successful collaborations that showcase our expertise in technology solutions
             </p>
         </div>
@@ -93,19 +118,19 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Filter Buttons -->
             <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button class="filter-btn active px-6 py-3 rounded-full bg-primary-600 text-white hover:bg-primary-700 transition-colors" data-filter="all">
+                <button class="filter-btn active px-6 py-3 rounded-full bg-primary-500 text-white hover:bg-primary-600 transition-colors" data-filter="all">
                     All Projects
                 </button>
-                <button class="filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 hover:bg-primary-600 hover:text-white transition-colors" data-filter="software">
+                <button class="filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 hover:bg-primary-500 hover:text-white transition-colors" data-filter="software">
                     Software Development
                 </button>
-                <button class="filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 hover:bg-primary-600 hover:text-white transition-colors" data-filter="mobile">
+                <button class="filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 hover:bg-primary-500 hover:text-white transition-colors" data-filter="mobile">
                     Mobile Apps
                 </button>
-                <button class="filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 hover:bg-primary-600 hover:text-white transition-colors" data-filter="ai">
+                <button class="filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 hover:bg-primary-500 hover:text-white transition-colors" data-filter="ai">
                     AI & ML
                 </button>
-                <button class="filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 hover:bg-primary-600 hover:text-white transition-colors" data-filter="robotics">
+                <button class="filter-btn px-6 py-3 rounded-full bg-gray-200 text-gray-700 hover:bg-primary-500 hover:text-white transition-colors" data-filter="robotics">
                     Robotics
                 </button>
             </div>
@@ -243,13 +268,13 @@
     </section>
 
     <!-- Call to Action -->
-    <section class="py-16 bg-primary-600">
+    <section class="py-16 bg-primary-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Start Your Project?</h2>
-            <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            <p class="text-xl text-orange-100 mb-8 max-w-2xl mx-auto">
                 Let's collaborate to bring your innovative ideas to life with our cutting-edge technology solutions.
             </p>
-            <a href="#contact" class="inline-block bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            <a href="#contact" class="inline-block bg-white text-primary-500 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                 Get Started Today
             </a>
         </div>
@@ -316,12 +341,12 @@
             btn.addEventListener('click', () => {
                 // Remove active class from all buttons
                 filterBtns.forEach(b => {
-                    b.classList.remove('active', 'bg-primary-600', 'text-white');
+                    b.classList.remove('active', 'bg-primary-500', 'text-white');
                     b.classList.add('bg-gray-200', 'text-gray-700');
                 });
 
                 // Add active class to clicked button
-                btn.classList.add('active', 'bg-primary-600', 'text-white');
+                btn.classList.add('active', 'bg-primary-500', 'text-white');
                 btn.classList.remove('bg-gray-200', 'text-gray-700');
 
                 const filter = btn.getAttribute('data-filter');
